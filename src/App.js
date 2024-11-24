@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Header from './components/Header';
+import General from './components/General';
+import Sidebar from './components/Sidebar';
+import { videoinfo } from './Data/videoinfo';
+import './index.css';
+import { useState } from 'react';
+import Fullsidebar from './components/Fullsidebar';
+import VideoPlayer from './components/VideoPlayer';
+
 
 function App() {
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
+  const [isVideoClicked,setVideoClicked]=useState(false);
+
+  const handleclick = () => {
+    setSidebarVisible((prev) => !prev);
+    
+  };
+  const videoClicked=()=>{
+    setVideoClicked((prev) => !prev)
+  };
+  
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      
+      <Header handleclick={handleclick} />
+      <div className="grid">
+          {!isVideoClicked &&videoinfo.map((v, i) => (
+            <General piteam={v} key={i} videoClicked={videoClicked} />
+          ))}
+         {isVideoClicked&& <VideoPlayer />}
+       
+      </div>
+      
+      {!isSidebarVisible && <Sidebar videoClicked={videoClicked} />}
+      {isSidebarVisible && <Fullsidebar videoClicked={videoClicked}/>}
     </div>
   );
 }
