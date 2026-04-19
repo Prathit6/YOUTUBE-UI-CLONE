@@ -30,4 +30,4 @@ The goal of this project is to practice frontend development and understand how 
 1. Download or clone the repository
 
 ```bash
-git clone <your-repo-link>
+git clone <[your-repo-link](https://github.com/Prathit6/YOUTUBE-UI-CLONE.git)>
